@@ -154,13 +154,13 @@ public:
 
             Arguments:
                     uint size The size of the data being read
-                    uint arg  The index of the argument being read
+                    uint arg  The index of the argument being read, note that return indexs start at 0.
                     void* t	  A pointer to the location of the data 
 
             Example:
                     For the kernel __kernel void kernel_entry(__constant struct B* b, __constant Map* map,__global  Map* R)
                     reading R from the memory is done by this call 
-                            ocl->readMemory(sizeof(Map)*numberOfElementsInMapArray, 2, &map);
+                            ocl->readMemory(sizeof(Map)*numberOfElementsInMapArray, 0, &map);
      */
     int readMemory (uint, uint, void*);
 

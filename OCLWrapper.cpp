@@ -1,6 +1,31 @@
+/*
+File: OCLWrapper.cpp
+Class: OCLWrapper
+Author: Hugo Tunius
+Web: http://hugotunius.se
+Date: May 2012
+
+Description:
+The class contained in this file is a naive wrapper for basic opencl functions, it's in no way a complete
+library and is only tested under very special cases of OpenCL usage.
+
+The purpose of the wrapper is to create a simple way to manage memory, read, execute and build the kernel source code.
+
+Lisence:
+Copyright (C) 2012 Hugo Tunius
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 #include <iostream>
 #include "OCLWrapper.h"
-#include "definitions.h"
 
 
 OCLWrapper::OCLWrapper (char* file) {
