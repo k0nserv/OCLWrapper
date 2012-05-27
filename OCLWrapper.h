@@ -23,7 +23,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+ */
 #ifndef OCLWRAPPER_H
 #define OCLWRAPPER_H
 
@@ -93,89 +93,89 @@ static const string errors[] = {"CL_SUCCESS",
 
 class OCLWrapper {
 public:
-	/*Constructor
-		Arguments:
-			char* src Kernel source code location
-		Example 
-			OCLWrapper("kernel.cl");
-	*/
+    /*Constructor
+            Arguments:
+                    char* src Kernel source code location
+            Example 
+                    OCLWrapper("kernel.cl");
+     */
     OCLWrapper (char*);
 
-	/*Destructor
-		Free memory buffers and other opencl types
-	*/
+    /*Destructor
+            Free memory buffers and other opencl types
+     */
     ~OCLWrapper ();
 
-	/*freeMemory
-		Description: Free memory resources 
-	*/
+    /*freeMemory
+            Description: Free memory resources 
+     */
     void freeMemory ();
 
     /*addArgument
-		Add an argument to the kernel. 
-		Arguments must be added in the same order on the host as the device!
+                Add an argument to the kernel. 
+                Arguments must be added in the same order on the host as the device!
 
-		Arguments:
-			void* t A pointer to the argument
-			uint length The size in bytes of the data
-	*/
-	void addArgument (void*, uint length);
+                Arguments:
+                        void* t A pointer to the argument
+                        uint length The size in bytes of the data
+     */
+    void addArgument (void*, uint length);
 
-	/*addReturn
-		Prepare the return from the kernel, should be the last arguments to the kernel.
+    /*addReturn
+            Prepare the return from the kernel, should be the last arguments to the kernel.
 
-		Arguments:
-			uint length Size in bytes of the return data
-	*/
+            Arguments:
+                    uint length Size in bytes of the return data
+     */
     void addReturn (uint length);
 
-	/*build
-		Buid the kernel. If the build fails the build log is availble in buildLog and the failed variable will be set.
+    /*build
+            Buid the kernel. If the build fails the build log is availble in buildLog and the failed variable will be set.
 
-		Arguments:
-			char* kernelName The name of the kernel entry point
-		Return:
-			bool - The result of the build
-	*/
+            Arguments:
+                    char* kernelName The name of the kernel entry point
+            Return:
+                    bool - The result of the build
+     */
     bool build (char*);
 
-	/*execute
-		Run the kernel once(1) on the device, results after the kernel has run is by using readMemory
+    /*execute
+            Run the kernel once(1) on the device, results after the kernel has run is by using readMemory
 
-		Arguments:
-			size_t work_size Opencl work size
-			size_t local_size Opencl local size
+            Arguments:
+                    size_t work_size Opencl work size
+                    size_t local_size Opencl local size
 
-	*/
+     */
     void execute (size_t, size_t);
 
-	/*readMemory
-		Read memory back from the device, used to aquire the return value after the kernel has ran
+    /*readMemory
+            Read memory back from the device, used to aquire the return value after the kernel has ran
 
-		Arguments:
-			uint size The size of the data being read
-			uint arg  The index of the argument being read
-			void* t	  A pointer to the location of the data 
+            Arguments:
+                    uint size The size of the data being read
+                    uint arg  The index of the argument being read
+                    void* t	  A pointer to the location of the data 
 
-		Example:
-			For the kernel __kernel void kernel_entry(__constant struct B* b, __constant Map* map,__global  Map* R)
-			reading R from the memory is done by this call 
-				ocl->readMemory(sizeof(Map)*numberOfElementsInMapArray, 2, &map);
-	*/
+            Example:
+                    For the kernel __kernel void kernel_entry(__constant struct B* b, __constant Map* map,__global  Map* R)
+                    reading R from the memory is done by this call 
+                            ocl->readMemory(sizeof(Map)*numberOfElementsInMapArray, 2, &map);
+     */
     int readMemory (uint, uint, void*);
-    
+
 
     /* Getters */
     char* getSource ();
-	bool isBuilt ();
+    bool isBuilt ();
     bool isDone ();
-	/*buildLog
-		Returns any errors that occured during build
-	*/
+    /*buildLog
+            Returns any errors that occured during build
+     */
     char* buildLog ();
     /*Setters*/
     void setDebug (bool);
-	void setArgument (void*, uint, uint);
+    void setArgument (void*, uint, uint);
 
 
 private:
@@ -207,10 +207,6 @@ private:
     int srclength;
 
     void handleError (cl_int, int);
-	void readSource(char* file);
+    void readSource (char* file);
 };
-
-
-
-
 #endif
